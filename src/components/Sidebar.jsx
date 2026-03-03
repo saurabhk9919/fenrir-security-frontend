@@ -1,7 +1,6 @@
-import {
-  FiBell,FiCalendar,FiGrid,FiHelpCircle,FiHome,FiSettings,FiTarget} from "react-icons/fi";
-
+import {FiBell,FiCalendar,FiGrid,FiHelpCircle,FiHome,FiSettings,FiTarget} from "react-icons/fi";
 import { MdOutlineDashboard } from "react-icons/md";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const navIcons = {
   dashboard: MdOutlineDashboard,
@@ -14,11 +13,22 @@ const navIcons = {
 };
 function SidebarNavButton({ item }) {
   const Icon = navIcons[item.iconKey];
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  const isActive = item.route && location.pathname === item.route;
+
+  const handleClick = () => {
+    if (item.route) {
+      navigate(item.route);
+    }
+  };
 
   return (
     <button
+      onClick={handleClick}
       className={`w-full rounded-xl px-3 py-2 text-left text-sm font-medium ${
-        item.active
+        isActive
           ? "bg-teal-100 text-teal-700" : "text-slate-600 hover:bg-slate-100"
       }`}>
       <span className="flex items-center gap-2">
@@ -61,5 +71,4 @@ function Sidebar({ navPrimary, navSecondary }) {
     </aside>
   );
 }
-
 export default Sidebar;

@@ -60,10 +60,10 @@ export const scans = [
 ];
 
 export const navPrimary = [
-  { label: "Dashboard", iconKey: "dashboard", active: true },
-  { label: "Projects", iconKey: "projects", active: false },
-  { label: "Scans", iconKey: "scans", active: false },
-  { label: "Schedule", iconKey: "schedule", active: false },
+  { label: "Dashboard", iconKey: "dashboard", active: true, route: "/dashboard" },
+  { label: "Projects", iconKey: "projects", active: false, route: "/projects" },
+  { label: "Scans", iconKey: "scans", active: false, route: "/scan/1" },
+  { label: "Schedule", iconKey: "schedule", active: false, route: "/schedule" },
 ];
 
 export const navSecondary = [
