@@ -1,0 +1,42 @@
+import { FiClock, FiDownload, FiHome, FiStopCircle } from "react-icons/fi";
+
+function TopSection({ summaryItems }) {
+  return (
+    <>
+      <div className="flex items-center justify-between border-b border-slate-200 px-6 py-3">
+        <div className="text-sm text-slate-500">
+          <span className="font-semibold text-slate-700"> Scan
+            <FiHome className="ml-1 inline-block" />
+          </span>
+          <span className="mx-2">/</span>
+          <span>Private Assets</span>
+          <span className="mx-2">/</span>
+          <span className="text-primary">New Scan</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <button className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700">
+            Export Report
+          </button>
+          <button className="rounded-lg border bg-red-200 border-red-200 px-4 py-2 text-sm font-medium text-red-500">
+            Stop Scan
+          </button>
+        </div>
+      </div>
+      <div className="border-b border-slate-200 px-6 py-4 text-xs text-slate-500">
+        <div className="grid grid-cols-7 gap-4">
+          {summaryItems.map((item) => (
+            <p key={item.label}>
+              {item.label}: <span className="font-semibold text-slate-700">{item.value}</span>
+            </p>
+          ))}
+          <p className="flex items-center justify-end gap-1 text-right">
+            <FiClock className="text-teal-500" />
+            10 mins ago
+          </p>
+     </div>
+      </div>
+    </>
+  );
+}
+
+export default TopSection;
