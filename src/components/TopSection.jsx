@@ -1,6 +1,6 @@
-import { FiClock, FiDownload, FiHome, FiStopCircle } from "react-icons/fi";
+import { FiClock, FiHome } from "react-icons/fi";
 
-function TopSection({ summaryItems }) {
+function TopSection({ summaryItems, onNewScan, onExportReport, onStopScan }) {
   return (
     <>
       <div className="flex items-center justify-between border-b border-slate-200 px-6 py-3">
@@ -11,13 +11,20 @@ function TopSection({ summaryItems }) {
           <span className="mx-2">/</span>
           <span>Private Assets</span>
           <span className="mx-2">/</span>
-          <span className="text-primary">New Scan</span>
+          <button
+            type="button" onClick={onNewScan} className="text-primary font-medium hover:underline">  
+            New Scan
+          </button>
         </div>
         <div className="flex items-center gap-2">
-          <button className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700">
+          <button
+            type="button" onClick={onExportReport}
+            className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700" >
             Export Report
           </button>
-          <button className="rounded-lg border bg-red-200 border-red-200 px-4 py-2 text-sm font-medium text-red-500">
+          <button type="button"onClick={onStopScan}
+            className="rounded-lg border bg-red-200 border-red-200 px-4 py-2 text-sm font-medium text-red-500"
+          >
             Stop Scan
           </button>
         </div>

@@ -35,7 +35,7 @@ function ProgressBar({ value }) {
     </div>
   );
 }
-function ScansPanel({ scans }) {
+function ScansPanel({ scans, onNewScan }) {
   return (
     <div className="rounded-xl border border-slate-200">
       <div className="flex items-center justify-between border-b border-slate-200 p-4">
@@ -56,7 +56,13 @@ function ScansPanel({ scans }) {
             <FiColumns />
             Column
           </button>
-          <button className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white">+ New scan</button>
+          <button
+            type="button"
+            onClick={onNewScan}
+            className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white"
+          >
+            + New scan
+          </button>
       </div>
       </div>
       <div className="max-h-[420px] overflow-auto">

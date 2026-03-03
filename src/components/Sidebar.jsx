@@ -45,7 +45,7 @@ function Sidebar({ navPrimary, navSecondary }) {
       <div>
         <div className="mb-8 flex items-center gap-2 px-2">
           <span className="grid h-5 w-5 place-items-center rounded-full bg-primary text-white">
-            <FiHome className="text-[11px]" />
+            <div className="h-2 w-2 bg-white rounded-full"></div>
           </span>
           <span className="text-2xl font-semibold text-teal-600">aps</span>
         </div>
