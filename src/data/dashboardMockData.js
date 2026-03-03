@@ -62,7 +62,7 @@ export const scans = [
 export const navPrimary = [
   { label: "Dashboard", iconKey: "dashboard", active: true, route: "/dashboard" },
   { label: "Projects", iconKey: "projects", active: false, route: "/projects" },
-  { label: "Scans", iconKey: "scans", active: false, route: "/scan/1" },
+  { label: "Scans", iconKey: "scans", active: false, route: "/scan" },
   { label: "Schedule", iconKey: "schedule", active: false, route: "/schedule" },
 ];
 

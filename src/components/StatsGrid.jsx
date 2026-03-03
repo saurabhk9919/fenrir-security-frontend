@@ -28,6 +28,7 @@ function StatsGrid({ stats }) {
               <p className={`inline-flex items-center gap-1 text-[11px] font-medium ${card.trend}`}>
                 <TrendIcon className="text-[11px]" />
                 {card.change}
+                
               </p>
             </div>
           </div>

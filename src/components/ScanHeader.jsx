@@ -22,7 +22,7 @@ function ScanProgressHeader({ scanProgress, scanSteps, scanMetadata }) {
                 r="40"
                 stroke="#e2e8f0"
                 strokeWidth="6"
-                fill="none"
+                fill={scanProgress.percentage === 0 ? "#000000" : "none"}
               />
              <circle cx="48"
                 cy="48"
@@ -36,7 +36,7 @@ function ScanProgressHeader({ scanProgress, scanSteps, scanMetadata }) {
              
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-2xl font-bold text-slate-700">
+              <span className="text-2xl font-bold text-primary">
                 {scanProgress.percentage}%
               </span>
               <span className="text-[10px] text-slate-400">
@@ -45,9 +45,11 @@ function ScanProgressHeader({ scanProgress, scanSteps, scanMetadata }) {
             </div>
           </div>
 
+          <div className="h-24 w-px bg-slate-200"></div>
+
           <div className="relative flex flex-1 items-center justify-between px-4">
            <div className="absolute top-6 left-12 right-12 h-0.5 bg-slate-200" />
-             {scanSteps.map((step, index) => {
+             {scanSteps.map((step) => {
               const Icon = stepIcons[step.icon];
             return (
                 <div
@@ -68,7 +70,7 @@ function ScanProgressHeader({ scanProgress, scanSteps, scanMetadata }) {
                 </div>
               );
             })}
-          </div>
+        </div>
         </div>
       </div>
 

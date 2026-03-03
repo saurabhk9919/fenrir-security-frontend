@@ -22,19 +22,19 @@ function ScanStatusBar({ scanStatus }) {
 
         <div className="flex gap-4">
           <div className="flex items-center gap-2">
-            <span className="text-slate-500">Critical:</span>
+            <span className="text-red-500 font-medium">Critical:</span>
             <span className="font-semibold text-red-500">{scanStatus.severityCounts.critical}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-slate-500">High:</span>
+            <span className="text-orange-500 font-medium">High:</span>
             <span className="font-semibold text-orange-500">{scanStatus.severityCounts.high}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-slate-500">Medium:</span>
+            <span className="text-yellow-500 font-medium">Medium:</span>
             <span className="font-semibold text-yellow-500">{scanStatus.severityCounts.medium}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-slate-500">Low:</span>
+            <span className="text-green-500 font-medium">Low:</span>
             <span className="font-semibold text-green-500">{scanStatus.severityCounts.low}</span>
           </div>
      </div>
