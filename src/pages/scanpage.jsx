@@ -4,14 +4,7 @@ import ScanProgressHeader from "../components/ScanHeader";
 import ScanStatusBar from "../components/ScanStatusbar";
 import Sidebar from "../components/Sidebar";
 import { navPrimary, navSecondary } from "../data/dashboardMockData";
-import {
-  activityLogs,
-  findingLogs,
-  scanMetadata,
-  scanProgress,
-  scanStatus,
-  scanSteps,
-} from "../data/scanMockData";
+import {activityLogs,findingLogs,scanMetadata,scanProgress,scanStatus,scanSteps,} from "../data/scanMockData";
 
 function ScanPage() {
   return (
@@ -43,10 +36,8 @@ function ScanPage() {
             <ScanProgressHeader
               scanProgress={scanProgress}
               scanSteps={scanSteps}
-              scanMetadata={scanMetadata}
-            />
-
-            {/* Main Content Area */}
+              scanMetadata={scanMetadata}/>
+            
             <div className="grid grid-cols-2 gap-4 p-6">
               <LiveScanConsole activityLogs={activityLogs} />
               <FindingLog findingLogs={findingLogs} />
