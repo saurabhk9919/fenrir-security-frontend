@@ -1,4 +1,5 @@
 import { FiColumns, FiFilter, FiSearch } from "react-icons/fi";
+import useScanFilters from "../hooks/useScanFilters";
 
 function StatusChip({ status }) {
   const styleMap = {
@@ -36,6 +37,14 @@ function ProgressBar({ value }) {
   );
 }
 function ScansPanel({ scans, onNewScan }) {
+  const {
+    searchQuery,setSearchQuery,
+    showFilters,setShowFilters,
+    statusFilter,setStatusFilter,
+    typeFilter,setTypeFilter,
+    statusOptions,typeOptions,filteredScans,clearFilters,
+  } = useScanFilters(scans);
+
   return (
     <div className="rounded-xl border border-slate-200">
       <div className="flex items-center justify-between border-b border-slate-200 p-4">
@@ -44,11 +53,17 @@ function ScansPanel({ scans, onNewScan }) {
           <input
             type="text"
             placeholder="Search scans by name or type..."
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
             className="w-full rounded-lg border border-slate-200 py-2 pl-9 pr-3 text-sm outline-none
              placeholder:text-slate-400 focus:border-slate-300" />
         </div>
         <div className="flex items-center gap-2">
-          <button className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm text-slate-500">
+          <button
+            type="button"
+            onClick={() => setShowFilters((previous) => !previous)}
+            className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm text-slate-500"
+          >
             <FiFilter />
             Filter
           </button>
@@ -59,12 +74,39 @@ function ScansPanel({ scans, onNewScan }) {
           <button
             type="button"
             onClick={onNewScan}
-            className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white"
-          >
+            className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white" >
             + New scan
           </button>
       </div>
       </div>
+      {showFilters && (
+        <div className="grid grid-cols-3 gap-3 border-b border-slate-200 bg-slate-50 p-4">
+          <select
+            value={statusFilter}
+            onChange={(event) => setStatusFilter(event.target.value)}
+            className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-600 outline-none focus:border-slate-300" >
+            {statusOptions.map((option) => (
+              <option key={option} value={option}>
+                Status: {option}
+              </option>
+            ))}
+          </select>
+          <select
+            value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)}
+            className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-600 outline-none focus:border-slate-300">
+            {typeOptions.map((option) => ( <option key={option} value={option}>
+                Type: {option}
+              </option>
+            ))}
+          </select>
+       <button
+            type="button"
+            onClick={clearFilters}
+            className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-600">
+            Clear filters
+          </button>
+        </div>
+      )}
       <div className="max-h-[420px] overflow-auto">
         <table className="w-full text-left text-sm">
         <thead className="sticky top-0 bg-white text-xs text-slate-400">
@@ -78,16 +120,24 @@ function ScansPanel({ scans, onNewScan }) {
             </tr>
            </thead>
             <tbody>
-            {scans.map((scan) => (
-              <tr key={scan.id} className="border-b border-slate-100 text-[13px]">
-                <td className="px-4 py-3 text-slate-700">{scan.name}</td>
-                <td className="px-4 py-3 text-slate-600">{scan.type}</td>
-                <td className="px-4 py-3"><StatusChip status={scan.status} /></td>
-                <td className="px-4 py-3"><ProgressBar value={scan.progress} /></td>
-                <td className="px-4 py-3"><VulnerabilityBadges data={scan.vulnerabilities} /></td>
-                <td className="px-4 py-3 text-right text-slate-500">{scan.lastScan}</td>
+            {filteredScans.length > 0 ? (
+              filteredScans.map((scan) => (
+                <tr key={scan.id} className="border-b border-slate-100 text-[13px]">
+                  <td className="px-4 py-3 text-slate-700">{scan.name}</td>
+                  <td className="px-4 py-3 text-slate-600">{scan.type}</td>
+                  <td className="px-4 py-3"><StatusChip status={scan.status} /></td>
+                  <td className="px-4 py-3"><ProgressBar value={scan.progress} /></td>
+                  <td className="px-4 py-3"><VulnerabilityBadges data={scan.vulnerabilities} /></td>
+                  <td className="px-4 py-3 text-right text-slate-500">{scan.lastScan}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={6} className="px-4 py-6 text-center text-sm text-slate-500">
+                  No scans found for the current search and filters.
+                </td>
               </tr>
-            ))}
+            )}
             </tbody>
            </table>
       </div>
