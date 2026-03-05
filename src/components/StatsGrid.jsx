@@ -9,22 +9,22 @@ const statIcons = {
 
 function StatsGrid({ stats }) {
   return (
-    <div className="mb-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div className="mb-3 sm:mb-5 grid grid-cols-1 gap-2 xs:gap-2.5 sm:gap-3 md:gap-4 sm:grid-cols-2 xl:grid-cols-4 w-full">
     {stats.map((card) => {
         const iconData = statIcons[card.iconKey];
         const Icon = iconData.icon;
         const isDecrease = card.change.toLowerCase().includes("decrease");
         const TrendIcon = isDecrease ? FiArrowDown : FiArrowUp;
      return (
-          <div key={card.title} className="rounded-xl border border-slate-200 bg-white p-4 font-semibold dark:border-slate-700 dark:bg-slate-800/40">
+          <div key={card.title} className="rounded-lg sm:rounded-xl border border-slate-200 bg-white p-3 sm:p-4 font-semibold dark:border-slate-700 dark:bg-slate-800/40">
            <div className="mb-2 flex items-center justify-between">
-              <p className="text-sm text-slate-500 dark:text-slate-400">{card.title}</p>
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">{card.title}</p>
               <span className={`grid h-6 w-6 place-items-center rounded-md ${iconData.iconBg}`}>
                 <Icon className={`text-sm ${iconData.iconColor}`} />
               </span>
             </div>
-            <div className="mt-1 flex items-center justify-start gap-3">
-              <p className="text-3xl font-semibold text-slate-700 dark:text-slate-300">{card.value}</p>
+            <div className="mt-1 flex items-center justify-start gap-2 sm:gap-3">
+              <p className="text-2xl sm:text-3xl font-semibold text-slate-700 dark:text-slate-300">{card.value}</p>
               <p className={`inline-flex items-center gap-1 text-[11px] font-medium ${card.trend}`}>
                 <TrendIcon className="text-[11px]" />
                 {card.change}

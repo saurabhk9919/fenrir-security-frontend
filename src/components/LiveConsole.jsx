@@ -4,11 +4,11 @@ import { FiClock, FiX, FiChevronDown } from "react-icons/fi";
 function Console({ activityLogs }) {
   const [activeTab, setActiveTab] = useState("activity");
   return (
-    <div className="flex flex-col rounded-xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800/50">
+    <div className="flex flex-col rounded-xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800/50 w-full overflow-hidden">
 
       {/* header */}
       <div className="border-b border-slate-200 dark:border-slate-700">
-        <div className="flex flex-wrap items-center gap-2 px-4 pt-3 pb-2">
+        <div className="flex flex-wrap items-center gap-2 px-3 sm:px-4 pt-2 sm:pt-3 pb-2">
           <div className="flex h-2 w-2 items-center">
             <span className="h-2 w-2 animate-pulse rounded-full bg-green-500"></span>
           </div>
@@ -26,7 +26,7 @@ function Console({ activityLogs }) {
             </button>
           </div>
         </div>
-        <div className="flex gap-6 overflow-x-auto px-4 dark:border-b dark:border-slate-700">
+        <div className="flex gap-4 sm:gap-6 overflow-x-auto px-3 sm:px-4 dark:border-b dark:border-slate-700 -mx-px">
           <button 
             onClick={() => setActiveTab("activity")}
             className={`relative whitespace-nowrap pb-2 text-sm font-medium transition-colors ${
@@ -52,7 +52,7 @@ function Console({ activityLogs }) {
         </div>
       </div>
 {/* console */}
-      <div className="max-h-[800px] overflow-y-auto bg-slate-50 dark:bg-slate-900/50 p-4 font-mono text-sm dark:text-slate-300">
+      <div className="max-h-[800px] overflow-y-auto bg-slate-50 dark:bg-slate-900/50 p-3 sm:p-4 font-mono text-xs sm:text-sm dark:text-slate-300">
         {activeTab === "activity" && (
         <div className="space-y-2">
             {activityLogs.map((log) => (

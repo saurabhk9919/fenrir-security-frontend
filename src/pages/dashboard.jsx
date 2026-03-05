@@ -33,14 +33,14 @@ function DashboardHome() {
   }, [toastMessage]);
 
   return (
-    <div className="min-h-screen bg-[#f6f8fb] text-slate-700 dark:bg-slate-900 dark:text-slate-200">
+    <div className="min-h-screen w-screen overflow-x-hidden bg-[#f6f8fb] text-slate-700 dark:bg-slate-900 dark:text-slate-200">
       {toastMessage && (
         <div className="fixed right-6 top-6 z-50 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white shadow-lg dark:bg-slate-800">
           {toastMessage}
         </div>
       )}
-      <div className="flex">
-        <div className="hidden lg:flex lg:min-h-screen">
+      <div className="flex h-screen overflow-hidden w-full">
+        <div className="hidden lg:flex lg:min-h-screen flex-shrink-0">
           <Sidebar navPrimary={navPrimary} navSecondary={navSecondary} />
         </div>
 
@@ -66,16 +66,17 @@ function DashboardHome() {
           />
         </div>
 
-        <main className="flex-1 p-3 sm:p-4 lg:p-6">
+        <main className="flex-1 h-screen overflow-y-auto overflow-x-hidden p-2 sm:p-3 md:p-4 lg:p-6">
+          <div className="mx-auto w-full max-w-7xl">
           <button
             type="button"
             onClick={() => setIsSidebarOpen(true)}
-            className="mb-3 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 lg:hidden"
+            className="mb-2 sm:mb-3 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors lg:hidden"
           >
-            <FiMenu />
-            Menu
+            <FiMenu size={18} />
+            <span>Menu</span>
           </button>
-        <div className="rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800/50">
+        <div className="rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800/50 w-full min-h-0 flex flex-col">
             <TopSection
               summaryItems={summaryItems}
               onNewScan={() => showToast("New scan started")}
@@ -90,6 +91,7 @@ function DashboardHome() {
                 onNewScan={() => showToast("New scan started")}
               />
             </div>
+          </div>
           </div>
         </main>
       </div>

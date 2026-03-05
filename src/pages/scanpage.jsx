@@ -26,14 +26,14 @@ function ScanPage() {
   }, [toastMessage]);
 
   return (
-    <div className="min-h-screen bg-[#f6f8fb] text-slate-700 dark:bg-slate-900 dark:text-slate-200">
+    <div className="min-h-screen w-screen overflow-x-hidden bg-[#f6f8fb] text-slate-700 dark:bg-slate-900 dark:text-slate-200">
       {toastMessage && (
         <div className="fixed right-6 top-6 z-50 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white shadow-lg dark:bg-slate-800">
           {toastMessage}
         </div>
       )}
-      <div className="flex">
-        <div className="hidden lg:flex lg:min-h-screen">
+      <div className="flex h-screen overflow-hidden w-full">
+        <div className="hidden lg:flex lg:min-h-screen flex-shrink-0">
           <Sidebar navPrimary={navPrimary} navSecondary={navSecondary} />
         </div>
 
@@ -59,43 +59,44 @@ function ScanPage() {
           />
         </div>
 
-        <main className="flex-1 p-3 sm:p-4 lg:p-6">
+        <main className="flex-1 h-screen overflow-y-auto overflow-x-hidden p-2 sm:p-3 md:p-4 lg:p-6">
+          <div className="mx-auto w-full max-w-7xl">
           <button
             type="button"
             onClick={() => setIsSidebarOpen(true)}
-            className="mb-3 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 lg:hidden"
+            className="mb-2 sm:mb-3 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors lg:hidden"
           >
-            <FiMenu />
-            Menu
+            <FiMenu size={18} />
+            <span>Menu</span>
           </button>
-          <div className="flex flex-col rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800/50">
+          <div className="flex flex-col rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800/50 w-full min-h-0">
             {/* Top breadcrumb */}
-            <div className="flex flex-col gap-3 border-b border-slate-200 px-4 py-3 sm:px-6 dark:border-slate-700 lg:flex-row lg:items-center lg:justify-between">
-              <div className="text-sm text-slate-500 dark:text-slate-400">
+            <div className="flex flex-col gap-2 sm:gap-3 border-b border-slate-200 px-3 sm:px-4 py-2 sm:py-3 dark:border-slate-700 md:px-6 md:py-4 lg:flex-row lg:items-center lg:justify-between">
+              <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 overflow-x-auto">
                 <span className="font-semibold text-slate-700 dark:text-slate-300">Scan
                   <FiHome className="ml-1 inline-block" />
                 </span>
-                <span className="mx-2">/</span>
-                <span>Private Assets</span>
-                <span className="mx-2">/</span>
+                <span className="mx-1 sm:mx-2">/</span>
+                <span className="hidden sm:inline">Private Assets</span>
+                <span className="mx-1 sm:mx-2">/ </span>
                 <button
                   type="button"
                   onClick={() => showToast("New scan started")}
-                  className="text-primary font-medium hover:underline" >
+                  className="text-primary font-medium hover:underline text-xs sm:text-sm" >
                   New Scan
                 </button>
               </div>
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 md:gap-3">
                 <button
                   type="button"
                   onClick={() => showToast("Export report started")}
-                  className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-300">
-                  Export Report
+                  className="rounded-lg border border-slate-200 px-2.5 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-slate-700 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-300 whitespace-nowrap">
+                  Export
                 </button>
                 <button
                   type="button"
                   onClick={() => showToast("Scan stopped")}
-                  className="rounded-lg border bg-red-200 border-red-200 px-4 py-2 text-sm font-medium text-red-500" >
+                  className="rounded-lg border bg-red-200 border-red-200 px-2.5 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-red-500 whitespace-nowrap" >
                   Stop Scan
                 </button>
               </div>
@@ -106,12 +107,13 @@ function ScanPage() {
               scanSteps={scanSteps}
               scanMetadata={scanMetadata}/>
             
-            <div className="grid grid-cols-1 gap-4 p-4 sm:p-6 xl:grid-cols-2">
+            <div className="grid grid-cols-1 gap-2 sm:gap-3 md:gap-4 p-3 sm:p-4 md:p-6 xl:grid-cols-2">
               <LiveScanConsole activityLogs={activityLogs} />
               <FindingLog findingLogs={findingLogs} />
             </div>
 
             <ScanStatusBar scanStatus={scanStatus} />
+          </div>
           </div>
         </main>
       </div>

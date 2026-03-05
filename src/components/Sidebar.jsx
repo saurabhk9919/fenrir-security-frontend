@@ -28,7 +28,7 @@ function SidebarNavButton({ item, onNavigate }) {
  return (
     <button
       onClick={handleClick}
-      className={`w-full rounded-xl px-3 py-2 text-left text-sm font-medium ${
+      className={`w-full rounded-lg sm:rounded-xl px-2 sm:px-3 py-1.5 sm:py-2 text-left text-xs sm:text-sm font-medium transition-colors ${
         isActive
           ? "bg-teal-100 text-teal-700 dark:bg-teal-900 dark:text-teal-300" 
           : "text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
@@ -43,13 +43,13 @@ function SidebarNavButton({ item, onNavigate }) {
 function Sidebar({ navPrimary, navSecondary, className = "", onNavigate }) {
   const { isDark, toggleTheme } = useTheme();
   return (
-    <aside className={`flex w-56 flex-col justify-between border-r border-slate-200 bg-white px-4 py-5 dark:border-slate-700 dark:bg-slate-800/80 ${className}`}>
+    <aside className={`flex w-56 flex-col justify-between border-r border-slate-200 bg-white px-3 sm:px-4 py-4 sm:py-5 dark:border-slate-700 dark:bg-slate-800/80 ${className}`}>
       <div>
-        <div className="mb-8 flex items-center gap-2 px-2">
-          <span className="grid h-5 w-5 place-items-center rounded-full bg-primary text-white">
-            <div className="h-2 w-2 bg-white rounded-full"></div>
+        <div className="mb-6 sm:mb-8 flex items-center gap-2 px-2">
+          <span className="grid h-4 sm:h-5 w-4 sm:w-5 place-items-center rounded-full bg-primary text-white">
+            <div className="h-1.5 sm:h-2 w-1.5 sm:w-2 bg-white rounded-full"></div>
           </span>
-          <span className="text-2xl font-semibold text-teal-600 dark:text-teal-400">aps</span>
+          <span className="text-lg sm:text-2xl font-semibold text-teal-600 dark:text-teal-400">aps</span>
         </div>
 
         <nav className="space-y-1">
@@ -67,7 +67,7 @@ function Sidebar({ navPrimary, navSecondary, className = "", onNavigate }) {
         
         <button
           onClick={toggleTheme}
-          className="mt-4 w-full rounded-xl px-3 py-2 text-left text-sm font-medium text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 flex items-center gap-2"
+          className="mt-3 sm:mt-4 w-full rounded-lg sm:rounded-xl px-2 sm:px-3 py-1.5 sm:py-2 text-left text-xs sm:text-sm font-medium text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 flex items-center gap-2 transition-colors"
           title={isDark ? "Switch to light mode" : "Switch to dark mode"}
         >
           {isDark ? <FiSun className="text-base" /> : <FiMoon className="text-base" />}
